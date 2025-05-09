@@ -22,17 +22,22 @@ class ArtikelController extends Controller
       public function createartikel(Request $request){
         $categori = Kategori::find($request->kategori_id); 
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-        $image = $request->file('image');
-        $namafile = time(). '.' .$image->getClientOriginalExtension(); 
-        $image->move( public_path('storage/img-artikel'),$namafile);
-
-        Artikel::create([
-            'artikel' => $request->artikel,
-            'kategori_id' => $categori->id,
-            'image'=> $namafile
-        ]);
+          'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+      ]);
+      
+      $image = $request->file('image');
+      $namafile = time() . '.' . $image->getClientOriginalExtension();
+      
+      // Simpan ke storage/app/public/img-artikel
+      $image->storeAs('img-artikel', $namafile, 'public');
+      
+      Artikel::create([
+          'title' => $request->title,
+          'artikel' => $request->artikel,
+          'kategori_id' => $categori->id,
+          'image' => $namafile
+      ]);
+      
         
         return redirect()->route('index.artikel')->with('Create',"Berhasil menambah data");
     }

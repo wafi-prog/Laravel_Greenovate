@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image_profile')->nullable();
-            $table->integer('telpon');   
+            $table->string('telpon');   
             $table->string('role')->default(2);
             // User Role
               // 1.Admin

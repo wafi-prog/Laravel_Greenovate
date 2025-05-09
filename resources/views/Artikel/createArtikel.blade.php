@@ -17,10 +17,15 @@
                         <h4>Buat Data Artikel</h4>
                       </div>
                       <div class="card-body">
+                        
                         <div class="form-group">
-                          <label for="artikel" >artikel</label>
-                          <input type="text" class="form-control" id="artikel" name="artikel">
-                        </div>
+                            <label for="title" >title</label>
+                            <input type="text" class="form-control" id="title" name="title">
+                          </div>                  
+                        <div class="form-group">
+                            <label for="artikel">Isi Artikel</label>
+                            <textarea class="form-control" id="artikel" name="artikel" rows="5" placeholder="isi artikel di sini..."></textarea>
+                          </div>                          
                         
                         <div class="form-group">
                             <label for="image">Gambar Artikel</label>

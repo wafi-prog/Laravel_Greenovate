@@ -66,7 +66,7 @@ class AuthController extends Controller
 {
     $validasi = Validator::make($request->all(), [
         'name' => ['required', 'string', 'max:255'],
-        'telpon' => ['required', 'string', 'max:13', 'unique:users'],
+        'telpon' => ['required', 'string', 'max:16', 'unique:users'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         'password' => ['required', 'string', 'min:6', 'confirmed'],
     ]);

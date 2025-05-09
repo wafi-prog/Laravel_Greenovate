@@ -47,6 +47,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Judul</th>
                             <th>Artikel</th>
                             <th>Gambar</th>
                             <th>Kategori</th>
@@ -59,6 +60,7 @@
                        @foreach ($artikel as $row)
                           <tr>
                             <td>{{$loop->iteration}}</td>
+                            <td>{{$row->title}}</td>
                             <td>{{$row->artikel}}</td>
                             <td><img src="{{ url('storage/img-artikel' . '/' . $row->image) }}" alt="{{ $row->artikel }}" style="height: 100px;width: 100%; object-fit: cover;" class="img-fluid rounded"></td>
                             <td>{{$row->kategori->categori}}</td>
