@@ -43,6 +43,11 @@
             <i class="fa-solid fa-filter"></i>
             <span>Dashboard Filter</span></a>
     </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{{route('index.datatoko')}}">
+            <i class="fa-solid fa-store"></i>
+            <span>Dashboard Toko</span></a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">

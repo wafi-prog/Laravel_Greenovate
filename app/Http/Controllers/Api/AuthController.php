@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Helpers\FormatHelper;
 use App\Helpers\MessageHelper;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -16,9 +17,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
-          
-           
+            'password' => 'required',  
         ]);
 
         $user = User::where('email', $request->email)->first();
@@ -32,6 +31,7 @@ class AuthController extends Controller
         }
 
         //check password
+
         if (!Hash::check($request->password, $user->password)) {
             return response()->json([
                 'status' => 'error',
@@ -89,5 +89,45 @@ class AuthController extends Controller
     $msg = "Berhasil Register";
     return MessageHelper::resultAuth(true, $msg, $detail, 200, $token);
 }
+
+public function updateProfile(Request $request)
+{
+    // Validasi request, semua field opsional tapi tervalidasi jika dikirim
+    $validated = $request->validate([
+        'name' => 'sometimes|string|max:255',
+        'email' => 'sometimes|email|unique:users,email,' . Auth::id(),
+        'password' => 'nullable|string|min:6',
+        'telpon' => 'nullable|string|max:15',
+        'image_profile' => 'nullable|image|mimes:jpg,jpeg,png,svg,gif',
+
+    ]);
+
+    // Ambil user yang sedang login (akan error 500 jika user tidak ditemukan)
+    $user = User::findOrFail(Auth::id());
+
+    // Update data jika field dikirim
+    if ($request->has('name')) $user->name = $request->name;
+    if ($request->has('email')) $user->email = $request->email;
+    if ($request->filled('password')) $user->password = Hash::make($request->password);
+    if ($request->has('telpon')) $user->telpon = $request->telpon;
+
+    // Upload image jika ada (opsional, via file upload multipart)
+ if ($request->hasFile('image_profile')) {
+    $image_profile = $request->file('image_profile');
+    $image_name = time() . '.' . $image_profile->getClientOriginalExtension();
+    $path = $image_profile->storePubliclyAs('profile', $image_name, 'public');
+    $user->image_profile = $image_name;
+}
+
+
+
+    $user->save();
+
+    return response()->json([
+        'status' => 'success',
+        'data' => $user,
+    ], 200);
+}
+
 
 }

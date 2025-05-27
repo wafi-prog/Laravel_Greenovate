@@ -4,29 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class produk extends Model
+class Komunitas extends Model
 {
-    protected $table = 'produks';
+     protected $table = 'komunitas';
     protected $fillable = [
-     'nama',
      'user_id',
      'kategori_id',
-     'toko_id',
-     'harga',
-     'description',
+     'message',
      'image'
       ];
 
-     public function user() {
+      public function user() {
     return $this->belongsTo(User::class);
 }
-
-public function kategori() {
+      public function kategori_id() {
     return $this->belongsTo(Kategori::class);
-}
-
-public function toko() {
-    return $this->belongsTo(Toko::class);
 }
 
 }

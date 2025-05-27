@@ -41,10 +41,15 @@
                         </div>
 
                            
-                        <div class="form-group">
-                            <label for="tutorial">Tutorial</label>
-                            <input type="tutorial" class="form-control" id="tutorial" name="tutorial">
-                          </div>
+                       <div class="form-group">
+                      <label for="tutorial">Tutorial</label>
+                      <textarea class="form-control" id="tutorial" name="tutorial"></textarea>
+                    </div>
+
+                    <script>
+                      CKEDITOR.replace('tutorial');
+                    </script>
+
 
                           <div class="form-group">
                             <label for="link_yt">Link Youtube</label>
@@ -64,3 +69,4 @@
  
 </div>
  @endsection
+  <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>

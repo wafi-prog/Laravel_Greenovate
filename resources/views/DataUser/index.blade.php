@@ -48,7 +48,6 @@
                         <tr>
                             <th>No</th>
                             <th>Name</th>
-                            <th>Username</th>
                             <th>Email</th>
                             <th>Image Profile</th>
                             <th>Created At</th>
@@ -61,10 +60,10 @@
                        <tr>
                          <td>{{$loop->iteration}}</td>
                          <td>{{$row->name}}</td>
-                         <td>{{$row->Username}}</td>
                          <td>{{$row->email}}</td>
+                         <td>{{$row->image_profile}}</td>
                          <td>{{$row->telpon}}</td>
-                         <td></td>
+                         
                          <td>{{$row->created_at}}</td>
                          {{-- <td> 
                              <td>{{$row->created_at}}</td>

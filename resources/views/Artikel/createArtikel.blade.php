@@ -22,11 +22,15 @@
                             <label for="title" >title</label>
                             <input type="text" class="form-control" id="title" name="title">
                           </div>                  
-                        <div class="form-group">
-                            <label for="artikel">Isi Artikel</label>
-                            <textarea class="form-control" id="artikel" name="artikel" rows="5" placeholder="isi artikel di sini..."></textarea>
-                          </div>                          
-                        
+                       <div class="form-group">
+                        <label for="artikel">Isi Artikel</label>
+                        <textarea class="form-control" id="artikel" name="artikel" rows="5" placeholder="isi artikel di sini..."></textarea>
+                        </div>
+
+                        <script>
+                        CKEDITOR.replace('artikel');
+                        </script>
+
                         <div class="form-group">
                             <label for="image">Gambar Artikel</label>
                             <input type="file" class="form-control-file" id="image" name="image">
@@ -61,3 +65,4 @@
  
 </div>
  @endsection
+ <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>

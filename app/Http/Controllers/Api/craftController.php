@@ -3,44 +3,29 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Artikel;
+use App\Models\craft;
 use Illuminate\Http\Request;
 
-class ArtikelController extends Controller
+class craftController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-//     public function index(Request $request)
-// {
-   
-//     $artikels = Artikel::select('title', 'artikel', 'image', 'kategori_id')
-//                         ->orderBy('title', 'ASC')
-//                         ->get();
-
-//     return response()->json([
-//         'status' => 'success',
-//         'data' => $artikels
-//     ], 200);
-// }
-   
-    public function index(Request $request)
+   public function index(Request $request)
 {
-    $query = Artikel::query();
-
-    
-    if ($request->has('kategoriId')) {
-        $query->where('kategori_id', $request->kategoriId);
+    $query = Craft::query();
+ 
+    if ($request->has('filterId')) {
+        $query->where('filter_id', $request->filterId);
     }
 
-    $artikels = $query->get();
+    $crafts = $query->get();
 
     return response()->json([
         'success' => true,
-        'data' => $artikels,
+        'data' => $crafts,
     ]);
 }
-
 
     /**
      * Show the form for creating a new resource.

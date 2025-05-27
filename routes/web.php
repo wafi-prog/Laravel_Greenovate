@@ -5,6 +5,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\CraftController;
 use App\Http\Controllers\DataUserController;
 use App\Http\Controllers\Kategori\kategoriController;
+use App\Http\Controllers\tokoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,10 @@ Route::controller(BaseController::class)->group(function(){
 Route::controller(DataUserController::class)->group(function(){
     // Ini buat liat table data user
        Route::get('/data-user','index')->name('index.dataUser');
+});
+Route::controller(tokoController::class)->group(function(){
+       Route::get('/data-toko','index')->name('index.datatoko');
+        Route::put('/toko/{id}','updateStatus')->name('index.update.status');
 });
 Route::controller(kategoriController::class)->group(function(){
     // Ini buat liat table kategori

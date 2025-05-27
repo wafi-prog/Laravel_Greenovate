@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tokos', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('about');
-            $table->string('nama_toko');
-            $table->string('lokasi');
-            $table->string('img_ktp');  
-            $table->enum('status',['veriefied','pending'])->default('pending');
+            $table->foreignId('artikel_id')->constrained('artikels')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->text('content');
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tokos');
+        Schema::dropIfExists('comments');
     }
 };
